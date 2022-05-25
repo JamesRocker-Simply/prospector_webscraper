@@ -1,0 +1,33 @@
+_pipeline
+_terraform
+_docs
+_monitoring
+_spec*
+.git
+
+_secrets/*
+
+# annoyingly, in git, you can't simply whitelist the patterns you want
+# recursively through all subfolders (they claim that's for performance
+# purposes). Instead, you have to whitelist the folder, blacklist the files in
+# that folder, then whitelist the patters you want.
+
+# local
+!_secrets/local
+
+# eu-west-1
+!_secrets/eu-west-1
+_secrets/eu-west-1/*
+!_secrets/eu-west-1/*.bnwsec
+
+!_secrets/eu-west-1/dev
+_secrets/eu-west-1/dev/*
+!_secrets/eu-west-1/live
+_secrets/eu-west-1/live/*
+
+!_secrets/eu-west-1/dev/production/staging
+_secrets/eu-west-1/dev/production/staging/*
+!_secrets/eu-west-1/dev/production/staging/*.bnwsec
+!_secrets/eu-west-1/live/production/production
+_secrets/eu-west-1/live/production/production/*
+!_secrets/eu-west-1/live/production/production/*.bnwsec
