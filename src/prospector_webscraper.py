@@ -30,7 +30,6 @@ def _url_list(base_url):
 
 def get_phone(base_url):
     # Wrapper function to call the validation methods in the phone_number_finder module
-    # Makes a call with a method unlikely to return false positives
     number_match_function = [
         pnf.find_from_call_to,
         pnf.find_by_e164_format,
@@ -44,14 +43,13 @@ def get_phone(base_url):
         if number_found is None:
             try:
                 # pass these headers to trick the site thinking we are a human
-                response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
+                response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
                 soup = bs4.BeautifulSoup(response.text, "html.parser")
                 number_found = _parse_function_loop(soup, number_match_function, url)
                 return number_found
             except:
                 pass
 
-    # finish
     if number_found is None:
         print("Number not found")
         return "", "missing", base_url
@@ -63,7 +61,7 @@ def get_email(base_url):
     for url in _url_list(base_url):
         if email_found is None:
             try:
-                response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
+                response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
                 soup = bs4.BeautifulSoup(response.text, "html.parser")
                 email_found = _parse_function_loop(soup, email_match_func, url)
                 return email_found
@@ -95,7 +93,7 @@ def mass_webscrape(list_of_sites):
             # continue
 
 
-def single_site(base_url):
+def single_site_scrape(base_url):
     try:
         phone = get_phone(base_url)
         email = get_email(base_url)
@@ -142,4 +140,4 @@ https://www.nobleaccountants.com/ # updated regex for specific area codes
 """
 if __name__ == "__main__":
     # forward slash must be at the end of the site address.
-    single_site("https://www.nobleaccountants.com/")
+    single_site_scrape("https://www.nobleaccountants.com/")

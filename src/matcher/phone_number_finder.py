@@ -66,7 +66,10 @@ def find_by_uk_landline(soup: bs4.BeautifulSoup, url):
     # digits} or (0){4 digits} {3 digits} {3 digits}
     # Landlines can't start with 00 and must comply with area codes
     # https://en.wikipedia.org/wiki/Telephone_numbers_in_the_United_Kingdom#Format
-    found_phone_number = re.findall(r"(0[1-9]\d{7,9}|0+[1-9]\d{3}[ \t]\d{5,6}|0[1-9]\d{3}[ \t]\d{3}[ \t]\d{3}|\((0)\)\[1-9]d{3}[ \t]\d{3}[ \t]\d{3})", soup.text)
+    found_phone_number = re.findall(
+        r"(0[1-9]\d{7,9}|0+[1-9]\d{3}[ \t]\d{5,6}|0[1-9]\d{3}[ \t]\d{3}[ \t]\d{3}|\((0)\)\[1-9]d{3}[ \t]\d{3}[ \t]\d{3})",
+        soup.text,
+    )
 
     if isinstance(found_phone_number[0], str) and found_phone_number[0] != "":
         return found_phone_number[0], inspect.stack()[0][3], url
