@@ -139,3 +139,4 @@ mypy.cfg
 /_terraform/.terraform/
 todo.md
 
+/modules.xml
