@@ -1,0 +1,16 @@
+version: '3.4'
+services:
+  prospect_webscraper:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ACCOUNT_ID: '129462528407' # dev-base
+        REGION: eu-west-1
+    environment:
+        REGION: local
+        KMS_KEY_ALIAS: local
+        STAGE: local
+        ENVIRONMENT: local
+    ports:
+      - 8888:8888
