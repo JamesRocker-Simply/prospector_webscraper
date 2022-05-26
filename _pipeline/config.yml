@@ -1,0 +1,37 @@
+global:
+  APP_TEMPLATE: 'ha_l7_container'
+  APP_NAME: 'prospector_webscraper'
+  APP_STAGE: 'production'
+  # See the list of valid teams in this file: https://github.com/simplybusiness/brave_new_world/blob/master/config/global.yaml (in the 'teams' section.
+  APP_TEAM_KMS_KEY_ACCESS: 'dna-devs'
+
+  # ------------------------------------------------------------------------------
+  # APP_TEMPLATE-specific parameters (See all options available here:
+  # https://github.com/simplybusiness/brave_new_world/blob/master/docs/PIPELINE_CONFIGURATION.md)
+  # ------------------------------------------------------------------------------
+
+  # Port exposed by the application
+  APP_PORT: '8888'
+  # Health check path
+  APP_HA_L7_CONTAINER_HEALTH_CHECK_PATH: '/health'
+  # When running docker build for the release image, specify a build target so we
+  # don't build unnecessary stages
+  APP_HA_L7_CONTAINER_DOCKER_BUILD_ARGS: ''
+  APP_HA_L7_CONTAINER_INTEGRATION: 'true'
+  APP_HA_L7_CONTAINER_NODES_DESIRED: '3'
+  APP_HA_L7_CONTAINER_NODES_MAX: '6'
+  INTEGRATION_MODE: 'true'
+  APP_HA_L7_CONTAINER_MEMORY: '128'
+  NEW_RELIC_ACCOUNT_ID: 135555
+  USE_INTELLIGENT_NOTIFICATIONS: 'true'
+
+  # SEMAPHORE_PROJECT_ID:
+
+  # This slack channel for application release notifications
+  APP_SLACK_DEPLOYMENT_CHANNEL: 'dna-devs-release'
+dev:
+  eu_west_1:
+    APP_HA_L7_CONTAINER_EXTRA_ENV1: "BUCKET_NAME=$(bnw_name $APP_NAME $BRANCH_NAME $ENVIRONMENT $APP_STAGE $REGION)"
+live:
+  eu_west_1:
+    APP_HA_L7_CONTAINER_EXTRA_ENV1: "BUCKET_NAME=$(bnw_name $APP_NAME $BRANCH_NAME $ENVIRONMENT $APP_STAGE $REGION)"

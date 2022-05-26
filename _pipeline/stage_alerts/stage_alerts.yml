@@ -1,0 +1,9 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - docker_setup
+  build:
+    commands:
+      - run_huxley 'create_newrelic_alerts apply _terraform/newrelic/alerts newrelic-template-container.tfstate'

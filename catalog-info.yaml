@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: prospector_webscraper
+  description: TODO: A description about what your repo does
+spec:
+  type: other
+  lifecycle: production

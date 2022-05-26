@@ -1,0 +1,11 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - docker_setup
+  build:
+    commands:
+      - run_huxley bnw_app_build
+  post_build:
+    commands:
+      - run_huxley bnw_app_promote
