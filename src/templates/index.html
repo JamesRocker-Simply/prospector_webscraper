@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Prospector Webscraper</title>
+    <meta name="description" content="The index page, nothing more, nothing less">
+    <meta name="author" content="James Rocker">
+
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet"  href="{{ url_for('static', filename='css/normalize.css') }}">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='css/skeleton.css') }}">
+
+    <!-- Favicon
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="../static/favicon.ico">
+  </head>
+
+  <body>
+    <!-- Primary Page Layout
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container">
+      <div class="row">
+        <div class="one-half column" style="margin-top: 25%">
+          <h4>Prospector Webscraper Home Page</h4>
+          <p>This applications purpose is to search a website or a list of websites, scraping for a contact phone number and email address</p>
+          <p><a href="/single_submission">Do you want to search for details on a single site?</a></p>
+          <p><a href="/multi_submission">Do you want to search for details on a list of sites?</a></p>
+        </div>
+      </div>
+    </div>
+  <!-- End Document
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </body>
+</html>

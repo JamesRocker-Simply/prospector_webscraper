@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Single Site Submission</title>
+    <meta name="description" content="The index page, nothing more, nothing less">
+    <meta name="author" content="James Rocker">
+
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet"  href="{{ url_for('static', filename='css/normalize.css') }}">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='css/skeleton.css') }}">
+
+    <!-- Favicon
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="../static/favicon.ico">
+
+    <!-- Javascript
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="{{ url_for('static', filename='js/notify_user.js') }}"></script>
+
+  </head>
+
+  <body>
+    <!-- Primary Page Layout
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container">
+      <div class="row">
+        <div class="one-half column" style="margin-top: 25%">
+          <h4>Single Site Submission</h4>
+
+          <input type="hidden" id="functionInput" value="Single Site">
+
+          <form name="base_url_input" action="/api/single_submission/" method="GET" id="submission_body" target="hiddenFrame">
+              <script>
+                <!-- checks the submission body has values and updates the scan site button -->
+                const form = document.getElementById('submission_body');
+                form.addEventListener("change", () => {
+                    document.getElementById('submitButton').disabled = !form.checkValidity()
+                });
+              </script>
+            <label for="base_url">What site do you want to scrape for contact details?</label>
+            <input name="base_url" type="text" id="base_url" value="https://www.example.com/" size="50" required><br>
+
+            <div>
+                <!--  don't listen to intellij, this is passed from the parent templates  -->
+                <button id="submitButton" disabled="disabled" onclick=event_log_to_notification_area(base_url.value)>Scan site</button>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <ul id="notification_area">
+                </ul>
+              </div>
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+
+
+  <!-- End Document
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </body>
+</html>
