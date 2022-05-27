@@ -1,8 +1,8 @@
-import re
 import inspect
+import re
 
 
-def find_by_regex(soup, url):
+def find_by_email_regex(soup, url):
     found_email = re.findall(
         r"([a-zA-Z\d._-]+@[a-zA-Z\d._-]+\.[a-zA-Z\d_-]+)", soup.text
     )
@@ -15,9 +15,8 @@ def find_by_mail_to(soup, url):
 
 def find_by_mail_href(soup, url):
     for a in soup.find_all("a", href=True):
-        # print(a["href"])
         if "https://mail." in a["href"]:
-            clean_string = a["href"].replace("callto", "")
+            clean_string = a["href"].replace("mailto", "")
             return clean_string, 1, inspect.stack()[0][3], url
     # return soup.select("a[href*=mailto]")[-1].text, inspect.stack()[0][3], url
     raise Exception

@@ -3,8 +3,9 @@ The problem with search for phone numbers is that it produces false positives.
 The more regex we add, the more likely we will pick up things that aren't phone numbers
 """
 
-import re
 import inspect
+import re
+
 import bs4
 
 
