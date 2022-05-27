@@ -1,6 +1,7 @@
-import bs4
-import sys
 import os
+import sys
+
+import bs4
 
 # allows us to run pytest through intellij or through cli
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
