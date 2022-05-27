@@ -40,4 +40,4 @@ RUN pip install --user -r $APP_HOME/requirements.txt --no-cache-dir
 
 EXPOSE $APP_PORT
 
-CMD ["python3", "find_site_details.py"]
+CMD ["python3", "host_server.py"]
