@@ -425,9 +425,7 @@ there.
     background-color: lightskyblue;
     color: #fff;
 }
-a {
-    color: #fff;
-}
+
 /* LOGO */
 .logo {
     font-size: 32px;
@@ -439,11 +437,11 @@ a {
     gap: 2em;
     font-size: 18px;
 }
-.menu li:hover {
-    background-color: #87CEFA;
-    border-radius: 18px;
-    transition: 0.3s ease;
-}
-.menu li {
-    padding: 5px 15px;
-}
+/*.menu li:hover {*/
+/*    background-color: #87CEFA;*/
+/*    border-radius: 18px;*/
+/*    transition: 0.3s ease;*/
+/*}*/
+/*.menu li {*/
+/*    padding: 5px 15px;*/
+/*}*/
