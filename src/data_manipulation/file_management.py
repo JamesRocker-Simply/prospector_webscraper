@@ -11,11 +11,11 @@ def data_dict_to_pandas(generator_json):
     return pd.concat(obj, ignore_index=True)
 
 
-def read_excel_file(excel_file):
+def read_excel_get_url_series(excel_file):
     df = pd.read_excel(excel_file)
     return df["url"]
 
 
-def output_excel_file(data_frame: pd.DataFrame):
-    data_frame.to_csv("output.csv")
+def output_excel_file(file_name, data_frame: pd.DataFrame):
+    data_frame.to_excel(f"{file_name}", index=False)
     return None

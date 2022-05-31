@@ -139,46 +139,10 @@ def dry_run(site):
         yield output
 
 
-"""
-Test cases
-https://babahabuandco.co.uk/
-https://afe-plumbing-services.business.site/ # True negative on no email
-https://lbplumbingandheating.com/
-http://londoncitybuilders.com/ 
-https://lvassociates.co.uk/ # True negative on email address
-http://www.pentwynbuild.com/
-https://www.innovatedb.com/
-https://chatteringbuilders.com/ # False negative on the email. Email is Javascript protected
-https://fgsaccountancy.co.uk/
-http://www.bdaccountants.co.uk/
-http://www.plumbdreamemergencyplumberpeckham.co.uk/ # True negative of email
-https://grantbuilders.co.uk/
-https://www.cehill.co.uk/
-https://www.barnes-itsolutions.co.uk/
-https://www.trinityconstruction.co.uk/
-https://www.mini-diggers-hire.co.uk/
-http://www.verticalbuildersltd.co.uk/
-http://www.cbsinfo.co.uk/
-https://grantbuilders.co.uk/
-https://gwbhorticulture.co.uk/
-https://www.eurocell.co.uk/branch-finder/thetford # False negative on email loaded in through Javascript
-http://robanbuilders.co.uk/
-https://www.langleysbuildingservicesltd.co.uk/
-http://www.easterndrainageservices.co.uk/index.html
-https://astaradvisory.co.uk/
-https://www.bennettsbuilding.co.uk/
-http://pasnell.co.uk/
-https://brownsofraskelf.co.uk/
-https://www.nobleaccountants.com/
-https://www.simplybusiness.co.uk/ # True negative on the email
-http://www.drainspecialist-mennieservices.co.uk/
-
-"""
-
 if __name__ == "__main__":
     # forward slash must be at the end of the site address.
     # single_site_scrape("https://www.landal.co.uk/")
-    file = "list_of_sites.xlsx"
-    site_list = fm.read_excel_file(file)
+    file = "../list_of_sites.xlsx"
+    site_list = fm.read_excel_get_url_series(file)
     # print(site_list)
     fm.output_excel_file(fm.data_dict_to_pandas(dry_run(site_list)))
