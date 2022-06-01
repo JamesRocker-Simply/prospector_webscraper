@@ -53,7 +53,7 @@ def get_phone(base_url):
 
     if data_object is None:
         print(f"Number not found for {base_url}")
-        return "", "missing", base_url
+        return "", "", ""
     return data_object
 
 
@@ -68,7 +68,7 @@ def get_email(base_url):
 
     if data_object is None:
         print(f"Email not found for {base_url}")
-        return "", "missing", base_url
+        return "", "", ""
     return data_object
 
 
@@ -79,6 +79,7 @@ def mass_webscrape(list_of_sites):
             phone = get_phone(trimmed_url)
             email = get_email(trimmed_url)
             output = {
+                "base_url": base_url,
                 "contact_number": phone[0],
                 "number_found_by_func": phone[1],
                 "number_found_at_url": phone[2],
@@ -106,6 +107,7 @@ def single_site_scrape(base_url):
         phone = get_phone(base_url)
         email = get_email(base_url)
         output = {
+            "base_url": base_url,
             "contact_number": phone[0],
             "number_found_by_func": phone[1],
             "number_found_at_url": phone[2],
@@ -124,6 +126,7 @@ def single_site_scrape(base_url):
 def dry_run(site):
     for each in site:
         output = {
+            "base_url": each,
             "contact_number": "07506748262",
             "number_found_by_func": "dry_run",
             "number_found_at_url": each,
@@ -144,7 +147,6 @@ if __name__ == "__main__":
     site_list = fm.read_excel_get_url_series(file)
     # for each in mass_webscrape(site_list):
     #     print(each)
-    # print(site_list)
-    fm.output_excel_file('dry_output.xlsx', fm.data_dict_to_pandas(mass_webscrape(site_list)))
-    # fm.output_excel_file('dry_output.xlsx', fm.data_dict_to_pandas(dry_run(site_list)))
+    # fm.output_excel_file('dry_output.xlsx', fm.data_dict_to_pandas(mass_webscrape(site_list))) # app production
+    fm.output_excel_file('dry_output.xlsx', fm.data_dict_to_pandas(dry_run(site_list)))
     print("--- %s seconds ---" % (time.time() - start_time))
