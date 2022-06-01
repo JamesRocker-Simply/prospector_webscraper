@@ -104,3 +104,5 @@ of your machine.
 3. We might want to look into a more complex library [scrapy](https://scrapy.org/)
    which I'm not familiar with but has some useful webspider functions, IP masking,
    asynchronous scraping which would allow for much faster multi scraping
+4. We probably want some form of caching, so we don't look at websites where we
+   already have data
