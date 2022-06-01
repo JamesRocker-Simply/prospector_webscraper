@@ -89,7 +89,7 @@ def download_file(file_to_download):
 
     try:
         path = f"{file_to_download}"
-        return send_file(path, attachment_filename=file_to_download, as_attachment=True)
+        return send_file(path, download_name=file_to_download, as_attachment=True)
     except FileNotFoundError:
         return """
         <html><body>
