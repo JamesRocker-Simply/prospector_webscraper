@@ -25,11 +25,25 @@ RUN yum -y install \
     git \
     postgresql-libs \
     postgresql-devel \
+    chromedriver \
+    wget \
+    unzip \
+    google-chrome-stable_current_x86_64.rpm \
     && yum clean all \
     && unlink /bin/pip && ln -s /bin/pip3 /bin/pip \
     && pip install -U pip==22.0.2 --no-cache-dir
 
 COPY ./src $APP_HOME
+
+# Setup the components needed for the google chrome driver
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm \
+    && yum -y install google-chrome-stable_current_x86_64.rpm \
+    && wget https://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip \
+    && unzip chromedriver_linux64.zip \
+    && mv -f chromedriver /usr/bin/chromedriver \
+    && rm google-chrome-stable_current_x86_64.rpm \
+    && rm chromedriver_linux64.zip \
+    && chmod 777 output
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Setup App
@@ -41,3 +55,4 @@ RUN pip install --user -r $APP_HOME/requirements.txt --no-cache-dir
 EXPOSE $APP_PORT
 
 CMD ["python3", "host_server.py"]
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
