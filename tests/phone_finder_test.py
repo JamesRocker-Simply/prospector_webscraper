@@ -7,7 +7,7 @@ import bs4
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
-from src.matcher import phone_number_finder
+from src.webscraper.matcher import phone_number_finder
 
 url = "test_url"
 

@@ -10,7 +10,7 @@ to scrape through single or multiple websites. If you want to get both email and
 phone details from a site, you can use either the `mass_webscrape` function for
 a list of sites or `single_site_scrape` for one site.
 
-Once the url is passed to these functions, we use the beautiful soup library to 
+Once the url is passed to these functions, we use the beautiful soup library to
 parses the raw html. We can then find objects in the text using the library built
 in tools or parse the rendered html object text directly.
 
@@ -26,6 +26,11 @@ it will check some potential urls where the details might be present, for exampl
 - example.com/contact
 
 Full list is in the `_url_list` function.
+
+If this is not found through a simple request, the selenium module will perform one
+last desperation call to the base url and try to match the details. This ensures
+that if the details are javascript protected they will be scraped. We don't do this
+for every URL because each page has to load. Even in headless this is really slow.
 
 If the `matcher` module does match it will return a json payload with the found details,
 the url the details were found and the name of the function that found the details.
@@ -49,13 +54,14 @@ do is add the function to the matcher module and then add it to either the
 
 ## App
 
-There is an app to house the UI and API. The API has a single intended endpoint of
-`api/single_submission` with a base_url parameter. This will query a single base url
-and respond with a json object. You can also do this through the UI
+There is an app to house the UI and API. The API has a single intended endpoint
+of `api/single_submission` with a base_url parameter. This will query a single
+base url and respond with a json object. You can also do this through the UI
 
-For the multi-site search there is page to upload Excel files. This will accept a column
-with `url` and search for everything in that column. Once the multi search has completed,
-the dataframe will be displayed in the page and the results can be downloaded once.
+For the multi-site search there is page to upload Excel files. This will accept
+a column with `url` and search for everything in that column. Once the multi
+search has completed, the dataframe will be displayed in the page and the results
+can be downloaded once.
 
 ## How to use
 
@@ -68,8 +74,8 @@ the dataframe will be displayed in the page and the results can be downloaded on
 1. Build your virtual environment with `python3.7 -m venv ./venv && source venv/bin/activate`
    or `source venv/bin/activate` if you already have a virtual environment setup
 2. Install the requirements with `pip install -r requirements.txt`
-3. Run what you need. For example, if you are testing the flask app, use `python3 src/app.py`.
-   You can also use intellij and run script files individually.
+3. Run what you need. For example, if you are testing the flask app, use
+   `python3 src/app.py`. You can also use intellij and run script files individually.
 
 ## Testing
 
@@ -100,7 +106,20 @@ of your machine.
 
 1. We might want to consider connecting the application up with the snowflake instance
    and enable some form of caching some websites aren't repeatedly queried.
-2. We might want to use selenium to search pages that are protected by Javascript.
-3. We might want to look into a more complex library [scrapy](https://scrapy.org/)
+2. We might want to look into a more complex library [scrapy](https://scrapy.org/)
    which I'm not familiar with but has some useful webspider functions, IP masking,
    asynchronous scraping which would allow for much faster multi scraping
+3. We probably want some form of caching, so we don't look at websites where we
+   already scraped the data
+
+## Local Selenium Development Issues
+
+You might stumble into some issues with local selenium development. Usually this
+is because you have run a selenium script and failed to kill the Chromedriver
+instance. Too many of these and selenium will start having issues on initialising
+driver instances. In which case, you can kill all chromedriver instances with
+`pkill Chrome`.
+
+Note, this also kills all Google Chrome instances, so it will close any open Google
+Chrome browsers you have open as well. You can also restart your machine and
+this will also solve the problem.
