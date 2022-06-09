@@ -75,7 +75,7 @@ can be downloaded once.
    or `source venv/bin/activate` if you already have a virtual environment setup
 2. Install the requirements with `pip install -r requirements.txt`
 3. Run what you need. For example, if you are testing the flask app, use
-   `python3 src/app.py`. You can also use intellij and run script files individually.
+   `python3 src/app.py`. You can also use intellij and run script `bin` files individually.
 
 ## Testing
 
@@ -104,13 +104,13 @@ of your machine.
 
 ## For the future
 
-1. We might want to consider connecting the application up with the snowflake instance
-   and enable some form of caching some websites aren't repeatedly queried.
-2. We might want to look into a more complex library [scrapy](https://scrapy.org/)
-   which I'm not familiar with but has some useful webspider functions, IP masking,
-   asynchronous scraping which would allow for much faster multi scraping
-3. We probably want some form of caching, so we don't look at websites where we
-   already scraped the data
+1. We will need some form of caching so websites aren't repeatedly queried.
+2. We might want to look into a more complex library [scrapy](https://scrapy.org/).
+   I'm not familiar with it but has some useful webspider functions, IP masking,
+   asynchronous scraping which would allow for much faster multi scraping.
+3. Currently, the results are not stored anywhere beyond a temporary Excel file.
+   The capability is there with the `data_store` module. This has not been added
+   in due to insufficient time and no MVP set.
 
 ## Local Selenium Development Issues
 
