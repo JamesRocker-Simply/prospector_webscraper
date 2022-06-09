@@ -1,4 +1,6 @@
+import time
 import pandas as pd
+
 from sqlalchemy import create_engine
 
 from src.webscraper.data_store.aws_config import secret_extraction as se
@@ -18,6 +20,13 @@ def _sql_alchemy_connect():
         )
     )
     return engine
+
+
+def input_df_to_db(df, table):
+    start_time = time.time()
+    db = _sql_alchemy_connect()
+    df.to_sql(table, con=db, if_exists="append")
+    print("--- %s seconds ---" % (time.time() - start_time))
 
 
 def execute_query_with_output(sql_query_file):
