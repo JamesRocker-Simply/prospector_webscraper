@@ -1,7 +1,7 @@
 import pandas as pd
 from sqlalchemy import create_engine
 
-from src.database.aws_config import secret_extraction as se
+from src.webscraper.data_store.aws_config import secret_extraction as se
 
 
 def _sql_alchemy_connect():
