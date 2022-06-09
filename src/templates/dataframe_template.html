@@ -25,18 +25,16 @@
     </nav>
     <!-- Primary Page Layout
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <div class="container">
         <iframe name="hiddenFrame" width="0" height="0" style="display: none;"></iframe>
-        <form method="POST" action="/download/{{file_to_download}}">
-            <input name="Download" type="submit" value="Download">
-        </form>
+        <div class="one-half column" style="margin-top: 2.5%">
+            <form method="POST" action="/download/{{file_to_download}}">
+                <input name="Download" type="submit" value="Download">
+            </form>
+        </div>
 
-      <div class="row">
-        <div class="one-half column" style="margin-top: 5%">
+        <div class="one-half column" style="margin-top: 2.5%">
             {{titles}}
             {{ tables|safe }}
         </div>
-      </div>
-    </div>
-</body>
+    </body>
 </html>
