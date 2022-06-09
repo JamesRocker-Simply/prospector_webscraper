@@ -1,9 +1,9 @@
 import bs4
 import requests
 
-from .data_manipulation import file_management as fm
 from .matcher import email_finder as ef
 from .matcher import phone_number_finder as pnf
+from .selenium_scrape import selenium_get_page, selenium_extract_data
 
 
 def _parse_function_loop(parsed_soup, list_of_functions, url):
@@ -72,7 +72,9 @@ def get_email(base_url, driver):
 
     if data_object is None:
         try:
-            selenium_get_page(base_url, driver)  # selenium is slow, we only want to search the base url for now
+            selenium_get_page(
+                base_url, driver
+            )  # selenium is slow, we only want to search the base url for now
             data_object = selenium_extract_data(email_match_func, driver)
         except:
             print(f"Email not found for {base_url}")
@@ -143,19 +145,3 @@ def dry_run(site):
             "email_found_at_url": each,
         }
         yield output
-
-
-if __name__ == "__main__":
-    # forward slash must be at the end of the site address.
-    import time
-
-    start_time = time.time()
-    selenium_driver = setup_webdriver()
-    # output = single_site_scrape("https://babahabuandco.co.uk/", driver)
-    # print(output)
-    file = "../list_of_sites.xlsx"
-    site_list = fm.read_excel_get_url_series(file)
-    fm.output_excel_file('../output.xlsx', fm.data_dict_to_pandas(mass_webscrape(site_list, selenium_driver)))  # app production
-    # fm.output_excel_file('../dry_output.xlsx', fm.data_dict_to_pandas(dry_run(site_list)))
-    selenium_clean_up(selenium_driver)
-    print("--- %s seconds ---" % (time.time() - start_time))

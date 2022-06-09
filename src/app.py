@@ -75,7 +75,9 @@ def upload_file():
 
     # generate the output
     file_to_download = f"output/{file_name}_output{file_extension}"
-    fm.output_excel_file(f"{file_to_download}", output)  # generate the file for the user to download
+    fm.output_excel_file(
+        f"{file_to_download}", output
+    )  # generate the file for the user to download
     return render_template(
         "dataframe_template.html",
         tables=output.to_html(),
@@ -106,8 +108,7 @@ def download_file(file_to_download):
          column typing using only varchar. Like the file you requested a second time, those moments will be lost in
           time, like tears in rain
           <br><a href="/">Go back to the home page</a></br>
-        </body>
-        
+        </body>       
         </html>
         """
     except Exception as error:
